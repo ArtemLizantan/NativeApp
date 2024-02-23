@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text} from 'react-native';
+import HomeScreen from './src/resources/screens/HomeScreen';
 
 function App(): React.JSX.Element {
-  return <Text>jeoicoew</Text>;
+  return <HomeScreen />;
 }
 
 export default App;
