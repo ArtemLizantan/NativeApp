@@ -4,16 +4,17 @@ import {ICard} from '../../../interfaces/interfaces';
 import {useNavigation} from '@react-navigation/native';
 
 export default function Card({srcImg, name, author}: ICard) {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
-  // const handleCardPress = () => {
-  //   navigation.navigate('OtherPage', {});
-  // };
-
+  const handleCardPress = () => {
+    navigation.navigate('ImageScreen', {
+      imageSrc: srcImg,
+    });
+  };
   return (
     <View style={styles.card}>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleCardPress()}>
           <Image
             style={styles.img}
             source={{
@@ -22,8 +23,10 @@ export default function Card({srcImg, name, author}: ICard) {
           />
         </TouchableOpacity>
       </View>
-      <View style={{padding: 5}}>
-        <Text style={styles.textauthor}>{author}</Text>
+      <View style={styles.textbox}>
+        <Text>
+          Author: <Text style={styles.textauthor}>{author}</Text>
+        </Text>
         <Text style={styles.text}>Description: {name}</Text>
       </View>
     </View>
@@ -36,17 +39,21 @@ const styles = StyleSheet.create({
     minHeight: 200,
     backgroundColor: 'lightgray',
     overflow: 'hidden',
+    borderRadius: 10,
+  },
+  textbox: {
+    padding: 5,
   },
   img: {
     width: 200,
-    height: 100,
+    height: 200,
+    objectFit: 'cover',
   },
   text: {
     fontSize: 14,
-    fontStyle: 'italic',
   },
   textauthor: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '900',
   },
 });

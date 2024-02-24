@@ -1,6 +1,5 @@
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import React, {useEffect} from 'react';
-import Header from '../../components/header/Header';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
 import {useActions} from '../../hooks/useActions';
@@ -9,29 +8,27 @@ import {IUnsplashPhoto} from '../../interfaces/interfaces';
 
 export default function HomeScreen() {
   const {photos} = useSelector((state: RootState) => state.photos);
-  console.log(photos);
 
   const {getPhotos} = useActions();
 
   useEffect(() => {
     if (!photos.length) {
-      getPhotos('20');
+      getPhotos('10');
     }
   }, [getPhotos, photos.length]);
 
   return (
     <ScrollView>
-      <Header />
       <View style={styles.containerCard}>
         {photos.map(
           ({
-            urls: {small},
+            urls: {regular},
             user: {name},
             id,
             alt_description,
           }: IUnsplashPhoto) => (
             <Card
-              srcImg={small}
+              srcImg={regular}
               name={alt_description}
               author={name}
               key={id}
@@ -48,7 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 10,
-    marginTop: 10,
+    paddingTop: 10,
     marginBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,

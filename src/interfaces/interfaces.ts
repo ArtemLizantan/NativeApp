@@ -6,7 +6,7 @@ export interface ICard {
 
 export interface IUnsplashPhoto {
   urls: {
-    small: string;
+    regular: string;
   };
   user: {
     name: string;
