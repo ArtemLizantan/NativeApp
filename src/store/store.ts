@@ -1,7 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import {photoSlice} from './photos/photos.slice';
+
+const rootReducer = combineReducers({
+  photos: photoSlice.reducer,
+});
 
 export const store = configureStore({
-  reducer: {},
+  reducer: rootReducer,
+  devTools: true,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
